@@ -5,7 +5,7 @@ FROM openjdk:23-jdk-slim
 WORKDIR /app
 
 # Copy the built JAR file into the container
-COPY . .
+COPY target/backend-0.0.1-SNAPSHOT.jar /app/backend-0.0.1-SNAPSHOT.jar
 
 # Expose the port your application runs on (default: 8080)
 EXPOSE 8080
