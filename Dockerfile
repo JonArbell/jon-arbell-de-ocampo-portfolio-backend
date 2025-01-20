@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 8080
 
 # Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
