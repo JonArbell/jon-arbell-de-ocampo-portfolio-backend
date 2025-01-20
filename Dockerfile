@@ -5,7 +5,9 @@ FROM openjdk:23-jdk-slim
 WORKDIR /app
 
 # Copy the built JAR file into the container
-COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
+
+RUN mvn clean package -DskipTests
 
 # Expose the port your application runs on (default: 8080)
 EXPOSE 8080
