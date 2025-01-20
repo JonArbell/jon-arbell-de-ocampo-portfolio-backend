@@ -2,6 +2,18 @@
 FROM maven:3.9.9-eclipse-temurin-23 AS build
 
 # Set the working directory inside the container
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the project files to the container
+COPY . .
+
+# Build the application, skipping tests
+RUN mvn clean package -DskipTests
+
+FROM openjdk:23
+
+# Set the working directory in the container
 WORKDIR /app
 
 # Copy the built JAR file from the target directory into the container
