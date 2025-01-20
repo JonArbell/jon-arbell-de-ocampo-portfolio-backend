@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:23-jdk-slim
+FROM maven:3.9.9-eclipse-temurin-23 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
