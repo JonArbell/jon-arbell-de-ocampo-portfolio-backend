@@ -1,26 +1,14 @@
 # Use an official OpenJDK runtime as a parent image
-FROM maven:3.9.9-eclipse-temurin-23 AS build
-
-# Set the working directory inside the container
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the project files to the container
-COPY . .
-
-# Build the application, skipping tests
-RUN mvn clean package -DskipTests
-
 FROM openjdk:23
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the built JAR file from the target directory into the container
-COPY --from=build target/backend-0.0.1-SNAPSHOT.jar /app/backend-0.0.1-SNAPSHOT.jar
+# Copy the Spring Boot JAR file into the container
+COPY target/backend-0.0.1-SNAPSHOT.jar /app/backend-0.0.1-SNAPSHOT.jar
 
-# Expose the port your application runs on (default: 8080)
+# Expose the port that the Spring Boot application will run on
 EXPOSE 8080
 
-# Define the command to run the application
-CMD ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
+# Run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "/app/backend-0.0.1-SNAPSHOT.jar"]
