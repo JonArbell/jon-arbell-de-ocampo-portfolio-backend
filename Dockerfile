@@ -1,11 +1,20 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:23-jdk-slim
+FROM maven:3.9.9-eclipse-temurin-23 AS build
+
+WORKDIR /app
+
+# Copy the project files to the container
+COPY . .
+
+# Build the application, skipping tests
+RUN mvn clean package -DskipTests
+
+FROM openjdk:23
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the Spring Boot JAR file into the container
-COPY . .
+COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar  /app/backend.jar
 
 # Expose the port that the Spring Boot application will run on
 EXPOSE 8080
