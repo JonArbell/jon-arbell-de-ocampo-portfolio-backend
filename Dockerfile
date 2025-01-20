@@ -14,10 +14,10 @@ FROM openjdk:23
 # Set the working directory in the container
 WORKDIR /app
 
-COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar  /app/backend.jar
+COPY --from=build /app/target/Backend-0.0.1-SNAPSHOT.jar  /app/Backend.jar
 
 # Expose the port that the Spring Boot application will run on
 EXPOSE 8080
 
 # Run the Spring Boot application
-CMD ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "Backend-0.0.1-SNAPSHOT.jar"]
