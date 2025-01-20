@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 8080
 
 # Define the command to run the application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
