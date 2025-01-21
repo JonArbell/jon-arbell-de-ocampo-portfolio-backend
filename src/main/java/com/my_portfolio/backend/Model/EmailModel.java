@@ -1,6 +1,8 @@
 package com.my_portfolio.backend.Model;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class EmailModel {
@@ -10,7 +12,11 @@ public class EmailModel {
     private String email;
 
     @NotNull
+    @Min(5)
     private String fullName;
+
+    @Min(10)
+    @Max(500)
     @NotNull
     private String message;
 
