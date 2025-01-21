@@ -9,11 +9,10 @@ public class EmailModel {
     private String email;
 
     @NotBlank(message = "Full Name cannot be blank.")
-    @Min(5)
+    @Size(min = 10, message = "Full Name must be at least 10 characters.")
     private String fullName;
 
-    @Min(10)
-    @Max(500)
+    @Size(min = 10, max = 500, message = "Message must be between 10 and 500 characters.")
     @NotBlank(message = "Message cannot be blank.")
     private String message;
 
