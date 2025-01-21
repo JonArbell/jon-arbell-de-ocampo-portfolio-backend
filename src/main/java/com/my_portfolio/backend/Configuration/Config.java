@@ -9,7 +9,7 @@ public class Config {
 
     @Bean
     public WebClient webClient(){
-        return WebClient.builder().build();
+        return WebClient.builder().baseUrl("https://jon-arbell-de-ocampo-portfolio-backend.onrender.com").build();
     }
 
 }
