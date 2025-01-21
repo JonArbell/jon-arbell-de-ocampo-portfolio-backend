@@ -1,23 +1,20 @@
 package com.my_portfolio.backend.Model;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 public class EmailModel {
 
-    @NotNull
+    @NotBlank(message = "Email cannot be blank.")
     @Email
     private String email;
 
-    @NotNull
+    @NotBlank(message = "Full Name cannot be blank.")
     @Min(5)
     private String fullName;
 
     @Min(10)
     @Max(500)
-    @NotNull
+    @NotBlank(message = "Message cannot be blank.")
     private String message;
 
     @Override
