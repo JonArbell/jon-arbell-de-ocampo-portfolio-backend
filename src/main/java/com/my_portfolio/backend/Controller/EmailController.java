@@ -37,7 +37,7 @@ public class EmailController {
 
         if(bindingResult.hasErrors()){
             bindingResult.getAllErrors().forEach(error -> {
-                response.put("Error",error.getDefaultMessage());
+                response.put("error",error.getDefaultMessage());
             });
 
             return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
@@ -51,7 +51,7 @@ public class EmailController {
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e){
-            response.put("error",e.getMessage());
+            response.put("exception",e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
