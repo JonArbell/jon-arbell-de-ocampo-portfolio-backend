@@ -2,6 +2,7 @@ package com.my_portfolio.backend.Controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,27 +25,24 @@ public class PingController {
         return Map.of("Ping","Tamang ping lang");
     }
 
+    @Async
     @Scheduled(fixedRate = 300000) // 5 minutes
     public void ping() {
 
-        try {
-
-            var response = webClient.post()
-                    .uri("/api/ping")
-                    .retrieve()
-                    .bodyToMono(Map.class);
-
-            var result = response.block();
-
-            logger.info("Ping successful, Result: {}", result);
-
-        } catch (WebClientResponseException e) {
-
-            logger.error("Ping failed with status {}: {}", e.getStatusCode(), e.getMessage());
-        } catch (Exception e) {
-
-            logger.error("Exception Error: {}", e.getMessage());
-        }
+        webClient.post()
+            .uri("/api/ping")
+            .retrieve()
+            .bodyToMono(Map.class)
+            .subscribe(
+                    result -> logger.info("Ping successful, Result: {}", result),
+                    error -> {
+                        if (error instanceof WebClientResponseException webClientException) {
+                            logger.error("Ping failed with status {}: {}", webClientException.getStatusCode(), webClientException.getMessage());
+                        } else {
+                            logger.error("Exception Error: {}", error.getMessage());
+                        }
+                    }
+            );
     }
 
 }
