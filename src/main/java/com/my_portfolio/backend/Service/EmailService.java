@@ -26,7 +26,11 @@ public class EmailService {
 
         fromUserMessage.setTo(email);
         fromUserMessage.setSubject("Portfolio Inquiry");
-        fromUserMessage.setText(emailModel.getMessage());
+
+        var finalMessage =
+                "From : " + emailModel.getEmail() +"\nFull name : "+emailModel.getFullName()+"\n\n"+emailModel.getMessage();
+
+        fromUserMessage.setText(finalMessage);
 
         mailSender.send(fromUserMessage);
 
