@@ -36,9 +36,7 @@ public class EmailController {
         var response = new HashMap<>();
 
         if(bindingResult.hasErrors()){
-            bindingResult.getAllErrors().forEach(error -> {
-                response.put("error",error.getDefaultMessage());
-            });
+            bindingResult.getAllErrors().forEach(error -> response.put("error",error.getDefaultMessage()));
 
             return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
         }

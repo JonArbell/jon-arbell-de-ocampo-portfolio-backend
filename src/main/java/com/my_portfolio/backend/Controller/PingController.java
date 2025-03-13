@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -20,6 +21,7 @@ public class PingController {
         this.webClient = webClient.baseUrl("https://jon-arbell-de-ocampo-portfolio-backend.onrender.com").build();
     }
 
+    @CrossOrigin(origins = "https://jon-arbell-de-ocampo-portfolio-backend.onrender.com")
     @PostMapping("/api/ping")
     public Map<String, String> checkPing(){
         return Map.of("Ping","Tamang ping lang");
