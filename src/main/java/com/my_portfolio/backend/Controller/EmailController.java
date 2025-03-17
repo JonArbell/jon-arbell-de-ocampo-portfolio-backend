@@ -18,7 +18,6 @@ public class EmailController {
 
     private final EmailService emailService;
 
-
 //URL = https://jon-arbell-de-ocampo-portfolio-backend.onrender.com/api/email-inquiry
 
     @CrossOrigin(origins = "https://deocampo-jon-arbell-d.netlify.app")

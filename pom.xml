@@ -11,7 +11,7 @@
 	<groupId>com.my-portfolio</groupId>
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Backend</name>
+	<name>Portfolio-Backend</name>
 	<description>Backend for my Portfolio email</description>
 	<url/>
 	<licenses>
@@ -70,6 +70,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 		</plugins>
 	</build>
 
