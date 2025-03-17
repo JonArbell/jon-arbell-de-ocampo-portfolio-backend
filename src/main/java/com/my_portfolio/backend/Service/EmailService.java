@@ -1,7 +1,7 @@
 package com.my_portfolio.backend.Service;
 
-import com.my_portfolio.backend.Model.EmailDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.my_portfolio.backend.Model.ModelDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -9,18 +9,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class EmailService {
+
     @Value("${spring.mail.username}")
     private String email;
 
     private final JavaMailSender mailSender;
 
-    @Autowired
-    public EmailService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
-
-    public void sendContactEmail(EmailDTO emailDTO) throws MailException {
+    public void sendContactEmail(ModelDTO modelDTO) throws MailException {
 
         var fromUserMessage = new SimpleMailMessage();
 
@@ -28,7 +25,7 @@ public class EmailService {
         fromUserMessage.setSubject("Portfolio Inquiry");
 
         var finalMessage =
-                "From : " + emailDTO.getEmail() +"\nFull name : "+ emailDTO.getFullName()+"\n\n"+ emailDTO.getMessage();
+                "From : " + modelDTO.getEmail() +"\nFull name : "+ modelDTO.getFullName()+"\n\n"+ modelDTO.getMessage();
 
         fromUserMessage.setText(finalMessage);
 
@@ -36,9 +33,9 @@ public class EmailService {
 
         var fromMeMessage = new SimpleMailMessage();
 
-        fromMeMessage.setTo(emailDTO.getEmail());
+        fromMeMessage.setTo(modelDTO.getEmail());
 
-        fromMeMessage.setText("Hello "+ emailDTO.getFullName()+",\n" +
+        fromMeMessage.setText("Hello "+ modelDTO.getFullName()+",\n" +
                 "\n" +
                 "Thank you for contacting me! I’ve received your message and will get back to you within 1–2 working days.\n" +
                 "\n" +

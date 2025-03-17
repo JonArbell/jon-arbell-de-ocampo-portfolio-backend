@@ -1,6 +1,6 @@
 package com.my_portfolio.backend.Controller;
 
-import com.my_portfolio.backend.Model.EmailDTO;
+import com.my_portfolio.backend.Model.ModelDTO;
 import com.my_portfolio.backend.Service.EmailService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
 public class EmailController {
+
+    //URL = https://jon-arbell-de-ocampo-portfolio-backend.onrender.com/api/email-inquiry
 
     private final EmailService emailService;
 
-//URL = https://jon-arbell-de-ocampo-portfolio-backend.onrender.com/api/email-inquiry
-
     @CrossOrigin(origins = "https://deocampo-jon-arbell-d.netlify.app")
     @PostMapping("/api/email-inquiry")
-    public ResponseEntity<Map<String, String>> sendContactEmail(@Valid @RequestBody EmailDTO emailDTO) {
+    public ResponseEntity<Map<String, String>> sendContactEmail(@Valid @RequestBody ModelDTO modelDTO) {
 
-        emailService.sendContactEmail(emailDTO);
+        emailService.sendContactEmail(modelDTO);
 
         return new ResponseEntity<>(Map.of("Response email","Successfully"), HttpStatus.OK);
 

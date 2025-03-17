@@ -1,10 +1,12 @@
 package com.my_portfolio.backend.Model;
 
-import jakarta.validation.constraints.*;
-import lombok.Data;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 @Data
-public class EmailDTO {
+public class ModelDTO {
 
     @NotBlank(message = "Email cannot be blank.")
     @Email
