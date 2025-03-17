@@ -1,6 +1,6 @@
 package com.my_portfolio.backend.Service;
 
-import com.my_portfolio.backend.Model.EmailModel;
+import com.my_portfolio.backend.Model.EmailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -20,7 +20,7 @@ public class EmailService {
         this.mailSender = mailSender;
     }
 
-    public void sendContactEmail(EmailModel emailModel) throws MailException {
+    public void sendContactEmail(EmailDTO emailDTO) throws MailException {
 
         var fromUserMessage = new SimpleMailMessage();
 
@@ -28,7 +28,7 @@ public class EmailService {
         fromUserMessage.setSubject("Portfolio Inquiry");
 
         var finalMessage =
-                "From : " + emailModel.getEmail() +"\nFull name : "+emailModel.getFullName()+"\n\n"+emailModel.getMessage();
+                "From : " + emailDTO.getEmail() +"\nFull name : "+ emailDTO.getFullName()+"\n\n"+ emailDTO.getMessage();
 
         fromUserMessage.setText(finalMessage);
 
@@ -36,9 +36,9 @@ public class EmailService {
 
         var fromMeMessage = new SimpleMailMessage();
 
-        fromMeMessage.setTo(emailModel.getEmail());
+        fromMeMessage.setTo(emailDTO.getEmail());
 
-        fromMeMessage.setText("Hello "+emailModel.getFullName()+",\n" +
+        fromMeMessage.setText("Hello "+ emailDTO.getFullName()+",\n" +
                 "\n" +
                 "Thank you for contacting me! I’ve received your message and will get back to you within 1–2 working days.\n" +
                 "\n" +
